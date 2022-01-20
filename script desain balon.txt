@@ -1,0 +1,31 @@
+fscommand("fullscreen", "true"); 
+Mouse_hide(); 
+score=0;
+
+shoot_mc.onEnterFrame=function()
+{
+this._x=_root._xmouse; 
+this._y=_root._ymouse;
+}
+shoot_mc.swabDepths(20); 
+for(i=0;i<10;1++)
+{
+attachMovie("balon 1","balon 1"+i,i,{_x:(Math.random()*500)+10,y:(Math.random()*400)+500}); 
+_root["balon 1"+i].onEnterFrame=function()
+{
+this._y-=30;
+if(this._y<-50)
+{
+this._y=(Math.random()*400)+500; 
+this._x=(Math.random()*500)+10;
+}
+}
+_root["balon"+i].onMouseDown=function()
+{
+if(this.hitTest(shot_mc))
+{
+score +=10; 
+removeMovieClip(this);
+}
+}
+}
